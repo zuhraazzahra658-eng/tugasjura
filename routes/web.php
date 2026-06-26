@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; // ← TAMBAH INI
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return view('home'); });
@@ -27,19 +29,13 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(LoginController::class)->group(function () {
     Route::get('login', 'showLoginForm')->name('login');
-    Route::post('login', 'loginUser')->name('login.process'); // ← ganti nama
+    Route::post('login', 'loginUser')->name('login.process');
 });
 
-Route::middleware('auth')->prefix('admin')->group(function () {
-    
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('products', ProductController::class)
+         ->only(['index', 'store', 'update', 'destroy']);
 
-    // Route untuk Management Users
-    Route::resource('users', UserController::class);
-
-    // BARIS BARU: Route untuk Management Products
-    Route::resource('products', ProductController::class);
-
+    Route::resource('customers', CustomerController::class);
+    Route::resource('categories', CategoryController::class);
 });
