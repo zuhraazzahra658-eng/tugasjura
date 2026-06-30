@@ -23,10 +23,11 @@ class ProductController extends Controller
             'nama_barang'   => 'required',
             'satuan'        => 'required',
             'harga'         => 'required|numeric|min:0',
+            'stok'          => 'required|numeric|min:0',
             'category_id'   => 'nullable|exists:categories,id',
         ]);
 
-        Product::create($request->only('kode_barang', 'nama_barang', 'satuan', 'harga', 'category_id'));
+        Product::create($request->only('kode_barang', 'nama_barang', 'satuan', 'harga', 'stok', 'category_id'));
 
         return redirect()->route('admin.products.index')
                          ->with('success', 'Produk berhasil ditambahkan.');
@@ -39,10 +40,11 @@ class ProductController extends Controller
             'nama_barang'   => 'required',
             'satuan'        => 'required',
             'harga'         => 'required|numeric|min:0',
+            'stok'          => 'required|numeric|min:0',
             'category_id'   => 'nullable|exists:categories,id',
         ]);
 
-        $product->update($request->only('kode_barang', 'nama_barang', 'satuan', 'harga', 'category_id'));
+        $product->update($request->only('kode_barang', 'nama_barang', 'satuan', 'harga', 'stok', 'category_id'));
 
         return redirect()->route('admin.products.index')
                          ->with('success', 'Produk berhasil diperbarui.');

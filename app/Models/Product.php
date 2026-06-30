@@ -11,6 +11,7 @@ class Product extends Model
         'nama_barang',
         'satuan',
         'harga',
+        'stok',
         'category_id',
     ];
 

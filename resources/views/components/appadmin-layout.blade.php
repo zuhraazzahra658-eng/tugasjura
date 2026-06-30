@@ -30,6 +30,9 @@
                     <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.sales.index') }}">Sales</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -40,5 +43,6 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @stack('scripts')
 </body>
 </html>

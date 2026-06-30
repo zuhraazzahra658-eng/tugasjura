@@ -35,7 +35,7 @@
 </div>
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-4">
         <label class="form-label">Satuan</label>
         <select name="satuan" class="form-select">
             @foreach(['Pcs','Box','Kg','Liter','Lusin','Rim','Set','Unit'] as $s)
@@ -49,12 +49,21 @@
             <div class="text-danger small mt-1">{{ $message }}</div>
         @enderror
     </div>
-    <div class="col-6">
+    <div class="col-4">
         <label class="form-label">Harga (Rp)</label>
         <input name="harga" type="number" min="0"
             value="{{ old('harga') }}"
             class="form-control" placeholder="0">
         @error('harga')
+            <div class="text-danger small mt-1">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-4">
+        <label class="form-label">Stok</label>
+        <input name="stok" type="number" min="0"
+            value="{{ old('stok', 0) }}"
+            class="form-control" placeholder="0">
+        @error('stok')
             <div class="text-danger small mt-1">{{ $message }}</div>
         @enderror
     </div>
